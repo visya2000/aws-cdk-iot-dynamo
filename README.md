@@ -1,14 +1,19 @@
-# Welcome to your CDK TypeScript project!
+# PoC
 
-This is a blank project for TypeScript development with CDK.
+Task:
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Build 2 components one consumer and other as publisher.
 
-## Useful commands
+Consumer:
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+1. build iot core
+2. subscribe iot topic through lambda
+3. iot rule to get data
+4. enrich data like add extra attribute in json
+5. insert into dynamodb and set some expiry
+6. lambda to read data while expiring and insert into s3 - use dynamodb stream
+Producer/publisher:
+
+1. subscribe iot topic and generate some random data and publish to topic - may be use lambda or ec2. preferred ec2 but your choice. it should generate data per second once.
+all do in nodejs and use mqtt
+
